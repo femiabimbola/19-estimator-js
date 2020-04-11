@@ -2,20 +2,24 @@ const infectionsByRequestedTime = (data, currentlyInfected) => {
   let infections;
   let periodInDays;
   let unitSet;
+  let factor;
   switch (data.periodType) {
     case 'weeks':
       periodInDays = data.timeToElapse * 7;
       unitSet = Math.trunc(periodInDays / 3);
-      infections = currentlyInfected * 2 ** unitSet;
+      factor = 2 ** unitSet;
+      infections = currentlyInfected * factor;
       break;
     case 'months':
       periodInDays = data.timeToElapse * 30;
       unitSet = Math.trunc(periodInDays / 3);
-      infections = currentlyInfected * 2 ** unitSet;
+      factor = 2 ** unitSet;
+      infections = currentlyInfected * factor;
       break;
     default:
       unitSet = Math.trunc(data.timeToElapse / 3);
-      infections = currentlyInfected * 2 ** unitSet;
+      factor = 2 ** unitSet;
+      infections = currentlyInfected * factor;
       break;
   }
   return infections;
@@ -23,7 +27,7 @@ const infectionsByRequestedTime = (data, currentlyInfected) => {
 
 const hospitalBedsByRequestedTime = (data, severeCases) => {
   const availableBeds = Math.trunc(data.totalHospitalBeds * 0.35);
-  return Math.trunc(availableBeds - severeCases) + 1;
+  return Math.trunc(availableBeds - severeCases);
 };
 
 const dollarsInFlight = (data, infections) => {
