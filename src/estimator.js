@@ -6,17 +6,17 @@ const infectionsByRequestedTime = (data, currentlyInfected) => {
     case 'weeks':
     case 'week':
       periodInDays = data.timeToElapse * 7;
-      unitSet = Math.floor(periodInDays / 3);
+      unitSet = Math.trunc(periodInDays / 3);
       infections = currentlyInfected * 2 ** unitSet;
       break;
     case 'months':
     case 'month':
       periodInDays = data.timeToElapse * 30;
-      unitSet = Math.floor(periodInDays / 3);
+      unitSet = Math.trunc(periodInDays / 3);
       infections = currentlyInfected * 2 ** unitSet;
       break;
     default:
-      unitSet = Math.floor(data.timeToElapse / 3);
+      unitSet = Math.trunc(data.timeToElapse / 3);
       infections = currentlyInfected * 2 ** unitSet;
       break;
   }
