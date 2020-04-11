@@ -4,13 +4,11 @@ const infectionsByRequestedTime = (data, currentlyInfected) => {
   let unitSet;
   switch (data.periodType) {
     case 'weeks':
-    case 'week':
       periodInDays = data.timeToElapse * 7;
       unitSet = Math.trunc(periodInDays / 3);
       infections = currentlyInfected * 2 ** unitSet;
       break;
     case 'months':
-    case 'month':
       periodInDays = data.timeToElapse * 30;
       unitSet = Math.trunc(periodInDays / 3);
       infections = currentlyInfected * 2 ** unitSet;
@@ -24,7 +22,7 @@ const infectionsByRequestedTime = (data, currentlyInfected) => {
 };
 
 const hospitalBedsByRequestedTime = (data, severeCases) => {
-  const availableBeds = Math.round(data.totalHospitalBeds * 0.35);
+  const availableBeds = Math.trunc(data.totalHospitalBeds * 0.35);
   return Math.trunc(availableBeds - severeCases);
 };
 
@@ -35,12 +33,10 @@ const dollarsInFlight = (data, infections) => {
   const { avgDailyIncomeInUSD } = data.region;
   switch (data.periodType) {
     case 'weeks':
-    case 'week':
       timeInDays = data.timeToElapse * 7;
       totalDollars = infections * avgDailyIncomePopulation * avgDailyIncomeInUSD * timeInDays;
       break;
     case 'months':
-    case 'month':
       timeInDays = data.timeToElapse * 30;
       totalDollars = infections * avgDailyIncomePopulation * avgDailyIncomeInUSD * timeInDays;
       break;
