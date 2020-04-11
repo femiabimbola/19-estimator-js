@@ -24,7 +24,7 @@ const infectionsByRequestedTime = (data, currentlyInfected) => {
 };
 
 const hospitalBedsByRequestedTime = (data, severeCases) => {
-  const availableBeds = data.totalHospitalBeds * 0.35;
+  const availableBeds = Math.trunc(data.totalHospitalBeds * 0.35);
   return availableBeds - severeCases;
 };
 
