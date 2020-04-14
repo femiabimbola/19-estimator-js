@@ -38,3 +38,7 @@ input[type="number"] {
   cursor: pointer;
   margin: 0 auto;
 }
+
+.button:hover {
+  background-color: rgb(5, 95, 95);
+}
